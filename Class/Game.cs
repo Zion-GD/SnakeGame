@@ -14,7 +14,15 @@ namespace SnakeGame.Class
     }
     internal class Game
     {
-        
+        private static Game instance;
+
+        public static Game Instance
+        {
+            get { 
+                if (instance == null) instance = new Game(); 
+                return instance; 
+            }
+        }
 
         public int width = 80;
         public int height = 20;

@@ -7,8 +7,7 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            game.Init();
+            Game.Instance.Init();
         }
     }
 }

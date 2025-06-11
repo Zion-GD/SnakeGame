@@ -10,17 +10,18 @@ namespace SnakeGame.Class
 {
     class Option
     {
-        public string Name;
-        public string[] Options;
-        public Color selectColor, unselectColor;
+        private string[] Options;
+        private ConsoleColor selectColor, unselectColor;
+        private int LineSpace;
         public int currIndex;
 
-        public Option(string name, string[] options, Color selectColor, Color unselectColor, )
+        public Option(string[] options, ConsoleColor selectColor, ConsoleColor unselectColor, int space )
         {
-            Name = name;
             Options = options;
             this.selectColor = selectColor;
             this.unselectColor = unselectColor;
+            this.LineSpace = space;
+            currIndex = 0;
         }
 
         public string this[int index]
@@ -31,6 +32,20 @@ namespace SnakeGame.Class
 
         public void DrawOption(Vector2 pos)
         {
+            for(int i = 0; i < Options.Length; ++i)
+            {
+                //Set option color
+                if(i == currIndex) Console.ForegroundColor = selectColor;
+                else Console.ForegroundColor = unselectColor;
+                
+                Console.SetCursorPosition(pos.x - Options[i].Length / 2, pos.y - LineSpace * i);
+                Console.WriteLine(Options[i]);
+            }
+        }
+
+        public void SelectOption(int dir)
+        {
+            currIndex = (currIndex + dir + Options.Length) % Options.Length;
             
         }
     }

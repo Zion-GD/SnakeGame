@@ -9,10 +9,10 @@ namespace SnakeGame.Class
 {
     abstract class UIPanel
     {
-        public abstract void DrawTitle();
-
-        
-
-        public abstract void DrawOption();
+        public abstract void Refresh();
+        public virtual void DrawTitle()
+        {
+            UITools.DrawText("Test", new Vector2(0,0), ConsoleColor.White);
+        }
     }
 }

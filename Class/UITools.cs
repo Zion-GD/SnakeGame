@@ -9,9 +9,10 @@ namespace SnakeGame.Class
 {
     public static class UITools
     {
-        public static void DrawTest(string txt, Vector2 pos, Color colr)
+        public static void DrawText(string txt, Vector2 pos, ConsoleColor color)
         {
-            Console.ResetColor
+            Console.ForegroundColor = color;
+            Console.SetCursorPosition(pos.x, pos.y);
             Console.WriteLine(txt);
         }
     }
