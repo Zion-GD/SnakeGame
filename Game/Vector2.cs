@@ -28,6 +28,20 @@ namespace SnakeGame.Game
         {
             this.x = x;
             this.y = y;
-        }        
+        }
+
+        public static bool operator ==(Vector2 left, Vector2 right)
+        {
+            if(left.x == right.x && left.y == right.y)
+                return true;
+            return false;
+        }
+
+        public static bool operator !=(Vector2 left, Vector2 right)
+        {
+            if (left.x == right.x && left.y == right.y)
+                return false;
+            return true;
+        }
     }
 }

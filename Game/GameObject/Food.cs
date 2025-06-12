@@ -8,9 +8,9 @@ namespace SnakeGame.Game.GameObject
 {
     internal class Food : GameObject
     {
-        public Food()
+        public Food(Snake snake)
         {
-            RandomPos();
+            RandomPos(snake);
         }
 
         public override void Render()
@@ -20,15 +20,17 @@ namespace SnakeGame.Game.GameObject
             Console.Write("✦");
         }
 
-        private void RandomPos()
+        public void RandomPos(Snake snake)
         {
             Random r = new Random();
             int x = r.Next(2, Game.Instance.width / 2) * 2;
             int y = r.Next(1, Game.Instance.height - 4);
             pos = new Vector2(x, y);
 
-            if (false)
-                RandomPos();
+            if (snake.CheckSamePos(pos))
+            {
+                RandomPos(snake);
+            }
         }
 
     }
