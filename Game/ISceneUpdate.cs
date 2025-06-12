@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SnakeGame.Class
+namespace SnakeGame.Game
 {
-    interface IUIComponent
+    internal interface ISceneUpdate
     {
-        void Refresh();
+        void onStart();
+        void Update();
+        void onEnd();
+
     }
 }

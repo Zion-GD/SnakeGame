@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SnakeGame.Class
+namespace SnakeGame.Game
 {
     enum E_SceneType
     {
@@ -28,18 +28,20 @@ namespace SnakeGame.Class
         public int height = 20;
 
         public ISceneUpdate currScene;
+        private bool isLoading = false;
 
         public void Init()
         {
             Console.CursorVisible = false;
             Console.SetWindowSize(width, height);
             Console.SetBufferSize(width, height);
+            LoadScene(E_SceneType.Start);
             GameLoop();
         }
 
         public void GameLoop()
         {
-            while (true)
+            while (!isLoading)
             {
                 if (currScene != null)
                 {
@@ -51,18 +53,23 @@ namespace SnakeGame.Class
         
         public void LoadScene(E_SceneType scene)
         {
-            currScene.onEnd();
+            isLoading = true;
+            currScene?.onEnd();
             switch (scene)
             {
                 case E_SceneType.Start:
-                    Console.WriteLine("start");
+                    currScene = new GameStartScene();
                     break;
                 case E_SceneType.Game:
+                    currScene = new GameScene();
                     break;
                 case E_SceneType.End:
+                    currScene = new GameEndScene();
                     break;
             }
-            currScene.onStart();
+            currScene?.onStart();
+            isLoading = false;
+            GameLoop();
         }
     }
 }
